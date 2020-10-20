@@ -9,6 +9,94 @@ const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
+// everything above was already written
+
+const teamMembers = [];
+const idArray = [];
+
+function teamCreation() {
+
+    function manager() {
+        // console.log("Let's build a team!");
+        inquirer
+            .prompt([
+                // Questions
+                {
+                    type: "input",
+                    name: "managerName",
+                    message: "What is the manager's name?",
+                    validate: answer => {
+                        if (answer !== "") {
+                            return true;
+                        }
+                        return "At least one character please.";
+                    }
+                }, {
+                    type: "input",
+                    name: "managerId",
+                    message: "What is the manager's ID?",
+                    validate: answer => {
+                        const proper = answer.match(
+                            /^[1-9]+$/
+                          );                
+                        if (proper > 0) {
+                            return true;
+                        }
+                        return "At least one positive number.";
+                    }
+                }, {
+                    type: "input",
+                    name: "managerEmail",
+                    message: "What is the manager's email address?",
+                    validate: answer => {
+                        const proper = answer.match(
+                            /\S+@\S+\.\S+/
+                        );
+                        if (proper) {
+                            return true;
+                        }
+                        return "Please use a proper email format.";
+                    }
+                }, {
+                    type: "input",
+                    name: "managerOfficeNumber",
+                    message: "What is the manager's office number?",
+                    validate: answer => {
+                        const office = answer.match(
+                            /^[1-9]+$/
+                          );
+                        if (office > 0) {
+                            return true;
+                        }
+                        return "At least one positive number.";
+                    }
+                }
+            ])
+            .then(answers => {
+                const manager = new Manager(answers.managerName, answers.managerId, answers.managerEmail, answers.managerOfficeNumber);
+                teamMembers.push(manager);
+                idArray.push(answers.managerId);
+
+                nonManagers();
+            });
+
+            function nonManagers() {
+               inquirer.prompt([
+                   {
+                       type: "input",
+                       name: "employee"
+                   }
+               ]) 
+            }
+
+    }
+
+    manager();
+
+    function teamCompletion() {
+
+    }
+}
 
 
 // Write code to use inquirer to gather information about the development team members,
