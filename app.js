@@ -41,7 +41,7 @@ function teamCreation() {
                     if (proper > 0) {
                         return true;
                     }
-                    return "At least one positive number.";
+                    return "Numbers only.";
                 }
             }, {
                 type: "input",
@@ -67,7 +67,7 @@ function teamCreation() {
                     if (office > 0) {
                         return true;
                     }
-                    return "At least one positive number.";
+                    return "Numbers only.";
                 }
             }
         ]).then(answers => {
@@ -122,7 +122,7 @@ function teamCreation() {
                     if (proper > 0) {
                         return true;
                     }
-                    return "At least one positive number.";
+                    return "Numbers only.";
                 }
             }, {
                 type: "input",
@@ -179,7 +179,7 @@ function teamCreation() {
                     if (proper > 0) {
                         return true;
                     }
-                    return "At least one positive number.";
+                    return "Numbers only.";
                 }
             }, {
                 type: "input",
